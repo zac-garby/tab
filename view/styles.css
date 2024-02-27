@@ -1,0 +1,64 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 35px auto;
+}
+
+div.header {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(223, 222, 215);
+}
+
+span.controls {
+    margin-left: auto;
+}
+
+span.option {
+    padding-left: 15px;
+}
+
+span.option label {
+    font-style: italic;
+}
+
+div.output-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    overflow-x: auto;
+}
+
+code#output {
+    display: block;
+    height: 100%;
+    line-height: 1.0em;
+}
+
+code#output pre {
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    font-size: 10pt;
+    line-height: 1em;
+    margin: 0;
+}
+
+span.punct {
+    color: rgb(172, 172, 172);
+}
+
+span.ph {
+    color: rgb(128, 63, 63);
+}
+
+span.digit {
+    font-weight: bold;
+}
+
+span.hidden {
+    color: transparent;
+}

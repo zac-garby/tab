@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac Garby&mdash;tab</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="main.js"></script>
+</head>
+<body onload="typeset()" onresize="typeset()">
+    <div class="header">
+        <a href="..">&larr; do another</a>
+        <span class="controls">
+            <strong>Options:</strong>
+            <span class="option">
+                <input type="checkbox" name="colours" id="colours" onchange="typeset()" checked>
+                <label for="colours">use fancy colouring</label>
+            </span>
+            <span class="option">
+                <input type="checkbox" name="clean-breaks" id="clean-breaks" onchange="typeset()" checked>
+                <label for="clean-breaks">only break on newlines</label>
+            </span>
+            <span class="option">
+                <input type="checkbox" name="hide-noise" id="hide-noise" onchange="typeset()">
+                <label for="hide-noise">hide unnecessary noise</label>
+            </span>
+        </span>
+    </div>
+    <div class="output-wrapper">
+        <code id="output">
+        </code>
+    </div>
+</body>
+</html>
