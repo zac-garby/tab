@@ -15,6 +15,14 @@ div.header {
     background-color: rgb(223, 222, 215);
 }
 
+button#save-as {
+    border: none;
+    background: none;
+    font-size: 1em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 span.controls {
     margin-left: auto;
 }

@@ -1,36 +1,64 @@
 var gap = 6
-var out, lines
+var out, content, lines
 
 function setup() {
     out = document.getElementById("output")
     let params = new URLSearchParams(window.location.search)
     let input = params.get("input")
 
-    if (input && input.trim().length > 0) {
-        lines = input.split("\n")
+    if (params.has("input") && input && input.trim().length > 0) {
+        content = input
+        lines = content.split("\n")
         typeset()
+    } else if (params.has("file")) {
+        let file = params.get("file")
+        loadUrl(`/tab/${file}`)
     } else if (params.has("url")) {
         let url = params.get("url")
-        fetch(`/download?url=${encodeURIComponent(url)}`)
-            .then(r => {
-                if (!r.ok) {
-                    throw new Error(r.status)
-                }
-                return r.text()
-            })
-            .then(text => {
-                lines = text.split("\n")
-                typeset()
-            })
-            .catch(err => {
-                console.error(err)
-                lines = err.toString().split("\n")
-            })
+        loadUrl(`/download?url=${encodeURIComponent(url)}`)
     } else {
-        let input = "No input given!\n\n(use ?input=... or ?url=...)"
-        lines = input.split("\n")
+        content = "No input given!\n\n(use ?input=... or ?url=...)"
+        lines = content.split("\n")
         typeset()
     }
+}
+
+function loadUrl(url) {
+    fetch(url)
+        .then(r => {
+            if (!r.ok) {
+                throw new Error(r.status)
+            }
+            return r.text()
+        })
+        .then(text => {
+            content = text
+            lines = content.split("\n")
+            typeset()
+        })
+        .catch(err => {
+            console.error(err)
+            lines = err.toString().split("\n")
+        })
+}
+
+function save() {
+    let name = prompt("What should I call it?").trim()
+
+    fetch(`/tab/${name}.txt`, {
+        method: "POST",
+        body: content,
+        headers: { "Content-Type": "text/plain" }
+    }).then(r => {
+        if (!r.ok) {
+            throw new Error(r.status)
+        }
+
+        location.search = `?file=${name}.txt`
+    }).catch(err => {
+        alert("failed! " + err.toString())
+        console.error(err)
+    })
 }
 
 function typeset() {
