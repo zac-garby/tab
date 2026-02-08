@@ -36,9 +36,9 @@ def get_content(name: str):
     fp = tab_path / name
 
     if fp.resolve().parent != tab_path:
-        return "invalid tab name"
+        return "invalid tab name", 400
     elif not fp.exists():
-        return f"no tab named {name} exists"
+        return f"no tab named {name} exists", 400
     else:
         return fp.read_text()
 
@@ -47,7 +47,9 @@ def save_tab(name: str):
     fp = (tab_path / name).with_suffix(".txt").resolve()
 
     if fp.parent != tab_path:
-        return "invalid tab name"
+        return "invalid tab name", 400
+    elif fp.exists():
+        return "tab already exists!", 400
 
     fp.write_bytes(request.data)
     return "ok", 201
