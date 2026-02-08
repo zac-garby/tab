@@ -1,12 +1,40 @@
 var gap = 6
+var out, lines
+
+function setup() {
+    out = document.getElementById("output")
+    let params = new URLSearchParams(window.location.search)
+    let input = params.get("input")
+
+    if (input && input.trim().length > 0) {
+        lines = input.split("\n")
+        typeset()
+    } else if (params.has("url")) {
+        let url = params.get("url")
+        fetch(`/download?url=${encodeURIComponent(url)}`)
+            .then(r => {
+                if (!r.ok) {
+                    throw new Error(r.status)
+                }
+                return r.text()
+            })
+            .then(text => {
+                lines = text.split("\n")
+                typeset()
+            })
+            .catch(err => {
+                console.error(err)
+                lines = err.toString().split("\n")
+            })
+    } else {
+        let input = "No input given!\n\n(use ?input=... or ?url=...)"
+        lines = input.split("\n")
+        typeset()
+    }
+}
 
 function typeset() {
-    let out = document.getElementById("output")
-    let queryParams = new URLSearchParams(window.location.search)
-    let input = queryParams.get("input") || "no input given."
-    let lines = input.split("\n")
-    
-    var maxWidth = 0
+    let maxWidth = 0
     for (var line of lines) {
         if (line.length > maxWidth) {
             maxWidth = line.length
@@ -32,7 +60,7 @@ function typeset() {
         let line = lines[l]
 
         if (line.trim().length == 0 && y == 0) continue
-        
+
         if (cleanBreaks && line.trim().length == 0) {
             var nextGap = -1
             for (var m = l+1; m < lines.length; m++) {
@@ -64,7 +92,7 @@ function typeset() {
         var lineContent = output[i]
             .replaceAll("\n", "")
             .replaceAll("\r", "")
-        
+
         if (document.getElementById("colours").checked) {
             lineContent = fancyColours(lineContent)
         }
@@ -93,5 +121,5 @@ function fancyColours(str) {
                 return c
             }
         })
-        
+
 }

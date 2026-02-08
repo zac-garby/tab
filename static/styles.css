@@ -20,6 +20,14 @@ textarea {
     height: 80px;
     resize: none;
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    font-size: 1em;
+}
+
+input[type=url] {
+    width: 100%;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1em;
 }
 
 input[type=submit], a.example {
