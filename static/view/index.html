@@ -16,6 +16,10 @@
         <a href="..">&larr; do another</a>
         , or
         <button id="save-as" onclick="save()">save as...</button>
+        <button id="save-edits" onclick="saveEdits()">save changes</button>
+        &ensp;|&ensp;
+        <button id="edit-toggle" onclick="toggleEdit()">edit</button>
+        <button id="annotate-toggle" onclick="toggleAnnotate()">annotate</button>
         <span class="controls">
             <strong>Options:</strong>
             <span class="option">
@@ -30,9 +34,14 @@
                 <input type="checkbox" name="hide-noise" id="hide-noise" onchange="typeset()">
                 <label for="hide-noise">hide unnecessary noise</label>
             </span>
+            <span class="option">
+                <input type="checkbox" name="show-annotations" id="show-annotations" onchange="toggleAnnotationVisibility()" checked>
+                <label for="show-annotations">show annotations</label>
+            </span>
         </span>
     </div>
     <div class="output-wrapper">
+        <textarea id="edit-area" onkeydown="onEditKeydown(event)" spellcheck="false"></textarea>
         <code id="output">
         </code>
     </div>

@@ -15,7 +15,7 @@ div.header {
     background-color: rgb(223, 222, 215);
 }
 
-button#save-as {
+button#save-as, button#edit-toggle, button#annotate-toggle {
     border: none;
     background: none;
     font-size: 1em;
@@ -36,10 +36,11 @@ span.option label {
 }
 
 div.output-wrapper {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     padding: 40px;
     overflow-x: auto;
+    position: relative;
 }
 
 code#output {
@@ -69,4 +70,120 @@ span.digit {
 
 span.hidden {
     color: transparent;
+}
+
+/* ── header buttons ─────────────────────────────────────────────────────────── */
+
+button#save-edits {
+    display: none;
+}
+
+body.editing button#save-edits {
+    border: none;
+    background: none;
+    font-size: 1em;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline;
+}
+
+body.editing button#edit-toggle,
+body.annotating button#annotate-toggle {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ── edit mode layout ───────────────────────────────────────────────────────── */
+
+#edit-area {
+    display: none;
+    position: absolute;
+    inset: 0;
+    padding: 40px;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    font-size: 10pt;
+    line-height: 1em;
+    white-space: pre;
+    overflow-x: auto;
+    background: rgb(245, 245, 239);
+    color: rgb(49, 49, 43);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+}
+
+body.editing #edit-area {
+    display: block;
+}
+
+body.editing code#output {
+    visibility: hidden;
+}
+
+/* ── annotation markers ─────────────────────────────────────────────────────── */
+
+body.annotating .output-wrapper {
+    cursor: crosshair;
+}
+
+.annotation-marker {
+    position: absolute;
+    height: 14px;
+    z-index: 10;
+    cursor: default;
+}
+
+body.annotating .annotation-marker {
+    cursor: pointer;
+}
+
+.annotation-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    background: rgb(180, 60, 80);
+    color: white;
+    border-radius: 3px;
+    font-size: 7pt;
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    opacity: 0.5;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.annotation-marker:hover .annotation-badge {
+    opacity: 1;
+    max-width: none;
+}
+
+.annotation-marker::after {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 30, 0.88);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 8pt;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
+    display: none;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.annotation-marker:hover::after {
+    display: block;
 }
