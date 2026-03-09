@@ -12,7 +12,7 @@ div.header {
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: rgb(223, 222, 215);
+    background-color: light-dark(rgb(223, 222, 215), rgb(32, 33, 40));
 }
 
 button#save-as, button#edit-toggle, button#annotate-toggle {
@@ -57,11 +57,11 @@ code#output pre {
 }
 
 span.punct {
-    color: rgb(172, 172, 172);
+    color: light-dark(rgb(172, 172, 172), rgb(83, 83, 83));
 }
 
 span.ph {
-    color: rgb(128, 63, 63);
+    color: light-dark(rgb(128, 63, 63), rgb(127, 192, 192));
 }
 
 span.digit {
@@ -111,8 +111,8 @@ body.annotating button#annotate-toggle {
     line-height: 1em;
     white-space: pre;
     overflow-x: auto;
-    background: rgb(245, 245, 239);
-    color: rgb(49, 49, 43);
+    background: light-dark(rgb(245, 245, 239), rgb(10, 10, 16));
+    color: light-dark(rgb(49, 49, 43), rgb(206, 206, 212));
     z-index: 5;
     width: 100%;
     height: 100%;
@@ -148,8 +148,8 @@ body.annotating .annotation-marker {
     align-items: center;
     height: 100%;
     padding: 0 5px;
-    background: rgb(180, 60, 80);
-    color: white;
+    background: light-dark(rgb(180, 60, 80), rgb(75, 195, 175));
+    color: light-dark(white, black);
     border-radius: 3px;
     font-size: 7pt;
     font-family: system-ui, sans-serif;
@@ -172,8 +172,8 @@ body.annotating .annotation-marker {
     bottom: 130%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(30, 30, 30, 0.88);
-    color: white;
+    background: light-dark(rgba(30, 30, 30, 0.88), rgba(225, 225, 225, 0.88));
+    color: light-dark(white, black);
     padding: 3px 8px;
     border-radius: 3px;
     font-size: 8pt;
