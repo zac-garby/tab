@@ -1,10 +1,14 @@
+:root {
+  color-scheme: light dark;
+}
+
 * {
     box-sizing: border-box;
-    color:rgb(49, 49, 43);
+    color:light-dark(rgb(49, 49, 43), rgb(206, 206, 209));
 }
 
 html {
-    background-color: rgb(245, 245, 239);
+    background-color: light-dark(rgb(245, 245, 239), rgb(10, 10, 16));
 }
 
 html, a, input, button {
@@ -39,9 +43,9 @@ input[type=url] {
 
 input[type=submit], a.example {
     width: 100%;
-    background-color: rgb(226, 218, 202);
+    background-color: light-dark(rgb(226, 218, 202), rgb(29, 37, 53));
     border: none;
-    border-bottom: 1px solid rgb(136, 129, 117);
+    border-bottom: 1px solid light-dark(rgb(136, 129, 117), rgb(119, 126, 138));
     padding: 10px;
     cursor: pointer;
     font-size: 14pt;
@@ -50,7 +54,7 @@ input[type=submit], a.example {
 
 a.example {
     display: block;
-    background-color: rgb(202, 189, 221);
+    background-color: light-dark(rgb(202, 189, 221), rgb(53,  66, 34));
     text-align: center;
     margin-top: 5px;
 }
